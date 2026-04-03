@@ -135,7 +135,7 @@ Data preparation follows the **TDN protocol**:
 
 |Model|Frames|Top-1|
 |---|---|---|
-|GCNet-ResNet50|8|**53.5%**|
+|GCNet-ResNet50|8|**52.7%**|
 |GCNet-ResNet50|16|**54.2%**|
 *All results strictly match the ACM TOMM paper ablation & comparison tables.*
 
@@ -164,9 +164,9 @@ GCNet is developed based on the TDN codebase but with significantly improved per
 |Method|Frames|Top-1 Accuracy|Improvement|
 |---|---|---|---|
 |TDN|8|52.3%|—|
-|**GCNet (Ours)**|**8**|**53.5%**|**+1.2%**|
-|TDN|16|49.9%|—|
-|**GCNet (Ours)**|**16**|**54.2%**|**+4.3%**|
+|**GCNet (Ours)**|**8**|**52.7%**|**+0.4%**|
+|TDN|16|53.9%|—|
+|**GCNet (Ours)**|**16**|**54.2%**|**+0.3%**|
 ### Key Advantage
 
 GCNet consistently outperforms TDN by **+1.2% ∼ +4.3%** across datasets, especially on fine-grained and confused categories, thanks to stronger temporal modeling and more discriminative feature learning.
@@ -245,12 +245,12 @@ main.py something RGB \
 |GTM|CCL|HMDB-51|UCF-101|
 |---|---|---|---|
 |✗|✗|57.0%|87.0%|
-|✓|✗|58.0%|88.0%|
-|✗|✓|57.6%|87.6%|
+|✓|✗|59.3%|88.0%|
+|✗|✓|58.0%|87.6%|
 |✓|✓|**59.9%**|**88.6%**|
 ## Contact
 
-luoyujuan@xxx.com (replace with your contact email)
+junmuzi@gmail.com
 
 ## Acknowledgements
 
@@ -262,22 +262,3 @@ Our code is built on:
 
 - PyTorch, TorchVision, Hugging Face
 
-## License
-
-This project is released under the**Apache-2.0 License**.
-
-## Citation (Official ACM TOMM Format)
-
-```latex
-@article{GCNet2025,
-  author  = {Liu, Jiayu and Luo, Yujuan and Li, Jun and Hu, Wenfeng and Shi, Zhiping and Guo, Jinlin and Liu, Xianglong},
-  title   = {Global-local Temporal Modeling Enhanced 2DCNN with Category-supervised Contrastive Learning for Action Recognition},
-  journal = {ACM Trans. Multimedia Comput. Commun. Appl.},
-  year    = {2025},
-  volume  = {1},
-  number  = {1},
-  pages   = {1--16},
-  doi     = {10.1145/nnnnnnn.nnnnnnn}
-}
-```
-> （注：文档部分内容可能由 AI 生成）

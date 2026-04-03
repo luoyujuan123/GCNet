@@ -1,18 +1,11 @@
 # GCNet: Global-local Temporal Modeling Enhanced 2DCNN with Category-supervised Contrastive Learning for Action Recognition
 
-![GCNet Architecture](https://github.com/luoyujuan123/GCNet/blob/main/GCNet_arch.jpg)  <!-- 可后续上传模型结构图替换链接 -->
+![GCNet Architecture](https://github.com/luoyujuan123/GCNet/picture/GCNet_arch.jpg)  <!-- 可后续上传模型结构图替换链接 -->
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/gcnet-global-local-temporal-modeling-enhanced/action-recognition-in-videos-on-ucf101)](https://paperswithcode.com/sota/action-recognition-in-videos-on-ucf101?p=gcnet-global-local-temporal-modeling-enhanced)
-
-[![PWC](https:/img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/gcnet-global-local-temporal-modeling-enhanced/action-recognition-in-videos-on-hmdb51)](https://paperswithcode.com/sota/action-recognition-in-videos-on-hmdb51?p=gcnet-global-local-temporal-modeling-enhanced)
 
 ## News
 
 **[Apr 3, 2026]** We release the PyTorch code of GCNet, based on the TDN codebase, integrating global-local temporal modeling and category-supervised contrastive learning.
-
-**[Apr 2, 2026]** GCNet achieves competitive performance on UCF101 and HMDB51 datasets.
-
-**[Mar 30, 2026]** The core module design of GCNet is completed, including global-local temporal module and category-supervised contrastive loss.
 
 ## Overview
 

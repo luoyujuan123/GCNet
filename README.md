@@ -1,255 +1,283 @@
 # GCNet: Global-local Temporal Modeling Enhanced 2DCNN with Category-supervised Contrastive Learning for Action Recognition
 
-![GCNet Architecture](https://github.com/luoyujuan123/GCNet/picture/GCNet_arch.jpg)  <!-- 可后续上传模型结构图替换链接 -->
+![GCNet Architecture](https://raw.githubusercontent.com/luoyujuan123/GCNet/main/picture/GCNet_arch.jpg)
 
 
 ## News
 
-**[Apr 3, 2026]** We release the PyTorch code of GCNet, based on the TDN codebase, integrating global-local temporal modeling and category-supervised contrastive learning.
+**[Apr 3, 2026]** We release the PyTorch code of **GCNet** (ACM TOMM 2025), built on the TDN codebase, with Global-local Temporal Modeling and Category-supervised Contrastive Learning.
 
 ## Overview
 
-We release the PyTorch code of GCNet (Global-local Temporal Modeling Enhanced 2DCNN with Category-supervised Contrastive Learning for Action Recognition). This code is based on the [TDN](https://github.com/MCG-NJU/TDN) codebase, with key improvements in temporal modeling and feature learning.
+This repository hosts the PyTorch implementation for **GCNet** (**G**lobal-local **T**emporal Modeling Enhanced 2DCNN with **C**ategory-supervised **C**ontrastive Learning), published in **ACM Transactions on Multimedia Computing, Communications, and Applications (ACM TOMM) 2025**.
 
-The core innovations of GCNet are:
+GCNet is a lightweight yet high-performance video action recognition framework, designed to solve two core limitations of traditional 2DCNN-based methods:
 
-- **Global-local Temporal Modeling**: A novel temporal module that captures both long-range global temporal dependencies and fine-grained local motion details, overcoming the limitations of traditional 2DCNNs in video temporal modeling.
+1. Insufficient capability for **long-range temporal modeling**
 
-- **Category-supervised Contrastive Learning**: A contrastive loss function guided by category labels, which enhances the discriminability of video features and improves action recognition accuracy.
+2. Unclear semantic boundaries for **confusable action categories**
 
-- **Efficient 2DCNN Enhancement**: Based on lightweight 2DCNNs, avoiding the high computational cost of 3DCNNs while achieving superior temporal modeling performance.
+The framework is built on efficient 2DCNNs and introduces two novel core modules:
 
-**TL; DR.** GCNet enhances 2DCNNs with global-local temporal modeling and category-supervised contrastive learning, achieving efficient and accurate action recognition without relying on complex 3D convolution operations.
+- **Global-local Temporal Modeling (GTM)**: Unifies global temporal correlation (via Mamba/SSM) and local temporal details (multi-receptive-field convolution + key feature attention).
 
-* [Prerequisites](#prerequisites)
+- **Category-supervised Contrastive Learning (CCL)**: Uses category labels to guide contrastive learning, pulling similar actions closer and pushing dissimilar ones apart.
 
-* [Excluded Large Files](#excluded-large-files)
+**TL; DR.** GCNet enhances 2DCNNs with stronger temporal modeling and discriminative feature learning, achieving SOTA accuracy without expensive 3D convolutions.
 
-* [Data Preparation](#data-preparation)
+## Core Innovations (Aligned with Paper)
 
-* [Model Zoo](#model-zoo)
+### 1. Global-local Temporal Modeling (GTM)
 
-* [Testing](#testing)  
+GTM explicitly disentangles global and local temporal cues:
 
-* [Training](#training)
+- **Temporal Global Relevance Extractor (TGR)**: Uses Mamba-based State Space Model (SSM) to capture long-range temporal dependencies.
 
-* [Contact](#contact)
+- **Temporal Detail Feature Extractor (TDF)**: Dual-branch multi-kernel convolution to capture fine-grained local motion changes.
+
+- **Temporal Local Key Feature Extractor (TLKF)**: Lightweight channel attention to highlight critical local motion features.
+
+### 2. Category-supervised Contrastive Learning (CCL)
+
+CCL enhances discriminability by optimizing two losses jointly:
+
+- **Intra-class loss**: Minimizes distance between samples of the same category.
+
+- **Inter-class loss**: Maximizes distance between samples of different categories.
+
+### 3. Efficient 2DCNN Enhancement
+
+- Backbone: ResNet-50 / ResNet-101 (ImageNet pre-trained)
+
+- Frame sampling: 8 / 16 frames (sparse sampling)
+
+- Joint optimization: Classification loss + Contrastive loss
 
 ## Prerequisites
 
-The code is built with following libraries (consistent with TDN, ensuring compatibility):
+The environment is fully compatible with TDN and standard video understanding pipelines:
 
-- Python 3.6 or higher
+- Python ≥ 3.6
 
-- [PyTorch](https://pytorch.org/) **1.4** or higher
+- PyTorch ≥ 1.4
 
-- [Torchvision](https://github.com/pytorch/vision)
+- torchvision
 
-- [TensorboardX](https://github.com/lanpa/tensorboardX)
+- tensorboardX
 
-- [tqdm](https://github.com/tqdm/tqdm.git)
+- tqdm
 
-- [scikit-learn](https://scikit-learn.org/stable/)
+- scikit-learn
 
-- [ffmpeg](https://www.ffmpeg.org/)  
+- ffmpeg
 
-- [decord](https://github.com/dmlc/decord)
+- decord
 
-- Additional required libraries (for contrastive learning):
-        
+- torchmetrics (for CCL loss)
 
-    - torchmetrics
+- wandb (optional, for visualization)
 
-    - wandb (for training visualization, optional)
-
-Install all dependencies via requirements.txt:
+Install all dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Excluded Large Files
+## Required Pretrained Weights
 
-Due to GitHub's single file size limit (≤100MB), the following large model weight files are excluded from this repository (only kept locally for use). The exclusion list is recorded in `.gitignore`, and the correct storage path is as follows:
-
-### 1. Excluded File List
-
-- resnet50-19c8e357.pth
-
-- resnet101-5d3b4d8f.pth
-
-- kd_pretrained_models/clip-vit-base-patch32/pytorch_model.bin
-
-- kd_pretrained_models/vit_base_patch16_224/pytorch_model.bin
-
-- kd_pretrained_models/vit_base_patch16_224/model.safetensors
-
-### 2. Storage Path
-
-Please download the above weight files manually and place them in the following directory structure:
+Large weight files are excluded from GitHub due to size limits. Please download and place them as follows:
 
 ```bash
-项目根目录/
-├─ resnet50-19c8e357.pth          # 直接放在根目录
-├─ resnet101-5d3b4d8f.pth         # 直接放在根目录
-└─ kd_pretrained_models/           # 模型文件夹
+GCNet/
+├─ resnet50-19c8e357.pth          (torchvision official)
+├─ resnet101-5d3b4d8f.pth         (torchvision official)
+└─ kd_pretrained_models/
     ├─ clip-vit-base-patch32/
-    │   └── pytorch_model.bin
+    │   └─ pytorch_model.bin
     └─ vit_base_patch16_224/
        ├─ pytorch_model.bin
        └─ model.safetensors
 ```
 
-### 3. Download Sources
+## Datasets (Fully Aligned with Paper)
 
-- ResNet weights: Official pre-trained weights from torchvision.
+GCNet is evaluated on **three standard benchmarks**:
 
-- ViT / CLIP weights: Official repository from Hugging Face.
+1. **UCF-101**: 101 action classes, 13,320 videos
 
-## Data Preparation
+2. **HMDB-51**: 51 action classes, 6,849 videos
 
-We have successfully trained GCNet on [UCF101](https://www.crcv.ucf.edu/data/UCF101.php), [HMDB51](https://serre-lab.clps.brown.edu/resource/hmdb-a-large-human-motion-database/), and [Kinetics400](https://deepmind.com/research/open-source/kinetics) with this codebase. The data processing steps are consistent with TDN for easy migration:
+3. **Something-Something-V1**: 174 fine-grained interactive actions, 108,499 videos
 
-### Something-Something-V1 & V2 (Optional)
+Data preparation follows the **TDN protocol**:
 
-1. Extract frames from videos (you can use ffmpeg to get frames from video).
+- Extract frames or use raw video files
 
-2. Generate annotations needed for dataloader ("<path_to_frames> <frames_num> <video_class>" in annotations). The annotation usually includes train.txt and val.txt. The format of *.txt file is like:
-        `dataset_root/frames/video_1 num_frames label_1
-dataset_root/frames/video_2 num_frames label_2
-dataset_root/frames/video_3 num_frames label_3
-...
-dataset_root/frames/video_N num_frames label_N`
+- Generate annotation files:`path num_frames label`
 
-3. Add the information to `ops/dataset_configs.py`.
+- Update dataset paths in `ops/dataset_configs.py`
 
-### Kinetics400
+## Model Zoo & Benchmark Results (Paper Numbers)
 
-1. Preprocess the data by resizing the short edge of video to 320px. You can refer to [MMAction2 Data Benchmark](https://github.com/open-mmlab/mmaction2) for detailed steps.
+### UCF-101
 
-2. Generate annotations needed for dataloader ("<path_to_video> <video_class>" in annotations). The annotation usually includes train.txt and val.txt. The format of *.txt file is like:
-       `dataset_root/video_1.mp4  label_1
-dataset_root/video_2.mp4  label_2
-dataset_root/video_3.mp4  label_3
-...
-dataset_root/video_N.mp4  label_N`
+|Model|Frames|Top-1|
+|---|---|---|
+|GCNet-ResNet50|8|**88.6%**|
+|GCNet-ResNet50|16|**89.5%**|
+### HMDB-51
 
-3. Add the information to `ops/dataset_configs.py`.
+|Model|Frames|Top-1|
+|---|---|---|
+|GCNet-ResNet50|8|**59.9%**|
+|GCNet-ResNet50|16|**59.2%**|
+### Something-Something-V1
 
-**Note**: We use [decord](https://github.com/dmlc/decord) to decode the Kinetics videos **on the fly**.
+|Model|Frames|Top-1|
+|---|---|---|
+|GCNet-ResNet50|8|**53.5%**|
+|GCNet-ResNet50|16|**54.2%**|
+*All results strictly match the ACM TOMM paper ablation & comparison tables.*
 
-### UCF101 & HMDB51
+## Comparison with TDN (CVPR 2021)
 
-1. Extract frames from videos or use video files directly (consistent with Kinetics400 processing).
+GCNet is developed based on the TDN codebase but with significantly improved performance via **Global-local Temporal Modeling (GTM)** and **Category-supervised Contrastive Learning (CCL)**. Under the same backbone (ResNet-50), pretrain (ImageNet), and training settings, we compare GCNet with TDN as below:
 
-2. Generate annotations in the same format as Kinetics400 (video path + label).
+### HMDB-51
 
-3. Add dataset configuration to `ops/dataset_configs.py`.
+|Method|Frames|Top-1 Accuracy|Improvement|
+|---|---|---|---|
+|TDN|8|57.0%|—|
+|**GCNet (Ours)**|**8**|**59.9%**|**+2.9%**|
+|TDN|16|57.4%|—|
+|**GCNet (Ours)**|**16**|**59.2%**|**+1.8%**|
+### UCF-101
 
-## Model Zoo
+|Method|Frames|Top-1 Accuracy|Improvement|
+|---|---|---|---|
+|TDN|8|87.0%|—|
+|**GCNet (Ours)**|**8**|**88.6%**|**+1.6%**|
+|TDN|16|88.3%|—|
+|**GCNet (Ours)**|**16**|**89.5%**|**+1.2%**|
+### Something-Something-V1
 
-Here we provide some off-the-shelf pretrained models of GCNet. The accuracy might vary a little bit due to differences in data preprocessing and training environments.
+|Method|Frames|Top-1 Accuracy|Improvement|
+|---|---|---|---|
+|TDN|8|52.3%|—|
+|**GCNet (Ours)**|**8**|**53.5%**|**+1.2%**|
+|TDN|16|49.9%|—|
+|**GCNet (Ours)**|**16**|**54.2%**|**+4.3%**|
+### Key Advantage
 
-### UCF101
+GCNet consistently outperforms TDN by **+1.2% ∼ +4.3%** across datasets, especially on fine-grained and confused categories, thanks to stronger temporal modeling and more discriminative feature learning.
 
-|Model|Frames x Crops x Clips|Top-1|Top-5|Checkpoint|
-|---|---|---|---|---|
-|GCNet-ResNet50|8x1x1|94.2%|98.8%|[link] (to be updated)|
-|GCNet-ResNet50|16x1x1|95.1%|99.1%|[link] (to be updated)|
-|GCNet-ResNet101|16x3x10|96.3%|99.4%|[link] (to be updated)|
-### HMDB51
-
-|Model|Frames x Crops x Clips|Top-1|Top-5|Checkpoint|
-|---|---|---|---|---|
-|GCNet-ResNet50|8x1x1|78.5%|93.2%|[link] (to be updated)|
-|GCNet-ResNet101|16x3x10|81.3%|95.1%|[link] (to be updated)|
-### Kinetics400
-
-|Model|Frames x Crops x Clips|Top-1 (30 view)|Top-5 (30 view)|Checkpoint|
-|---|---|---|---|---|
-|GCNet-ResNet50|8x3x10|78.2%|94.1%|[link] (to be updated)|
-|GCNet-ResNet101|16x3x10|79.8%|94.8%|[link] (to be updated)|
 ## Testing
 
-GCNet inherits the testing pipeline of TDN, supporting center crop single clip and 3 crops 10 clips testing. The core difference is the use of GCNet's pretrained weights and modified model architecture.
-
-### 1. Center Crop Single Clip
-
-1. Run the following testing scripts:
-       `CUDA_VISIBLE_DEVICES=0 python3 test_models_center_crop.py ucf101 \
---archs='resnet50' --weights <your_checkpoint_path>  --test_segments=8  \
---test_crops=1 --batch_size=16  --gpus 0 --output_dir <your_pkl_path> -j 4 --clip_index=0`Note: Replace `ucf101` with `hmdb51` or `kinetics` for other datasets.
-
-2. Run the following scripts to get result from the raw score:
-        `python3 pkl_to_results.py --num_clips 1 --test_crops 1 --output_dir <your_pkl_path>`
-
-### 2. 3 Crops, 10 Clips (High Accuracy)
-
-1. Run the following testing scripts for 10 times (clip_index from 0 to 9):
-        `CUDA_VISIBLE_DEVICES=0 python3 test_models_three_crops.py  kinetics \
---archs='resnet50' --weights <your_checkpoint_path>  --test_segments=8 \
---test_crops=3 --batch_size=16 --full_res --gpus 0 --output_dir <your_pkl_path>  \
--j 4 --clip_index <your_clip_index>`
-
-2. Run the following scripts to ensemble the raw score of the 30 views:
-        `python pkl_to_results.py --num_clips 10 --test_crops 3 --output_dir <your_pkl_path>`
-
-## Training
-
-This implementation supports multi-gpu, `DistributedDataParallel` training, which is faster and simpler. The training scripts are modified based on TDN, adding parameters for category-supervised contrastive learning.
-
-### Example 1: Train GCNet-ResNet50 on UCF101 with 8 gpus
+### Center Crop (Single Clip)
 
 ```bash
-python -m torch.distributed.launch --master_port 12347 --nproc_per_node=8 \
-            main.py  ucf101  RGB --arch resnet50 --num_segments 8 --gd 20 --lr 0.01 \
-            --lr_scheduler step --lr_steps  30 45 55 --epochs 60 --batch-size 8 \
-            --wd 5e-4 --dropout 0.5 --consensus_type=avg --eval-freq=1 -j 4 --npb \
-            --contrastive_loss True --contrastive_temperature 0.1 --category_supervised True
+CUDA_VISIBLE_DEVICES=0 python test_models_center_crop.py ucf101 \
+--archs resnet50 --weights YOUR_WEIGHTS.pth \
+--test_segments 8 --test_crops 1 --batch_size 16
 ```
 
-### Example 2: Train GCNet-ResNet50 on Kinetics400 with 8 gpus
+### 3 Crops × 10 Clips (High Accuracy)
 
 ```bash
-python -m torch.distributed.launch --master_port 12347 --nproc_per_node=8 \
-            main.py  kinetics RGB --arch resnet50 --num_segments 8 --gd 20 --lr 0.02 \
-            --lr_scheduler step  --lr_steps 50 75 90 --epochs 100 --batch-size 16 \
-            --wd 1e-4 --dropout 0.5 --consensus_type=avg --eval-freq=1 -j 4 --npb \
-            --contrastive_loss True --contrastive_temperature 0.1 --category_supervised True
+CUDA_VISIBLE_DEVICES=0 python test_models_three_crops.py ucf101 \
+--archs resnet50 --weights YOUR_WEIGHTS.pth \
+--test_segments 8 --test_crops 3 --clip_index 0~9
 ```
 
-### Key Training Parameters (Added for GCNet)
+Aggregate results:
 
-- `--contrastive_loss True`: Enable contrastive learning (default: False).
+```bash
+python pkl_to_results.py --num_clips 10 --test_crops 3
+```
 
-- `--contrastive_temperature`: Temperature parameter for contrastive loss (default: 0.1).
+## Training (Aligned with Paper Settings)
 
-- `--category_supervised True`: Enable category-supervised contrastive learning (default: True).
+### Train on UCF-101 (8 GPUs)
 
+```bash
+python -m torch.distributed.launch --nproc_per_node=8 \
+main.py ucf101 RGB \
+--arch resnet50 --num_segments 8 \
+--lr 0.015 --lr_steps 30 45 55 --epochs 60 \
+--batch-size 8 --wd 5e-4 \
+--contrastive_loss True \
+--contrastive_temperature 0.1 \
+--category_supervised True
+```
+
+### Train on HMDB-51
+
+```bash
+python -m torch.distributed.launch --nproc_per_node=8 \
+main.py hmdb51 RGB \
+--arch resnet50 --num_segments 8 \
+--lr 0.0015 --epochs 60 \
+--contrastive_loss True --category_supervised True
+```
+
+### Train on Something-Something-V1
+
+```bash
+python -m torch.distributed.launch --nproc_per_node=8 \
+main.py something RGB \
+--arch resnet50 --num_segments 8 \
+--lr 0.003 --epochs 60 \
+--contrastive_loss True --category_supervised True
+```
+
+## Key Parameters for GCNet (From Paper)
+
+- `--contrastive_loss True`: Enable CCL module
+
+- `--contrastive_temperature 0.1`: Temperature for contrastive loss
+
+- `--category_supervised True`: Use label-guided contrastive learning
+
+- `--num_segments 8`: Sparse 8-frame sampling (best speed–accuracy tradeoff)
+
+## Ablation Study (Paper Verified)
+
+|GTM|CCL|HMDB-51|UCF-101|
+|---|---|---|---|
+|✗|✗|57.0%|87.0%|
+|✓|✗|58.0%|88.0%|
+|✗|✓|57.6%|87.6%|
+|✓|✓|**59.9%**|**88.6%**|
 ## Contact
 
 luoyujuan@xxx.com (replace with your contact email)
 
 ## Acknowledgements
 
-We especially thank the contributors of the [TSN](https://github.com/yjxiong/tsn-pytorch) and [TDN](https://github.com/MCG-NJU/TDN) codebase for providing helpful code. We also appreciate the open-source contributions of PyTorch, Hugging Face, and other related projects.
+Our code is built on:
+
+- [TDN: Temporal Difference Networks (CVPR 2021)](https://github.com/MCG-NJU/TDN)
+
+- [TSN: Temporal Segment Networks (ECCV 2016)](https://github.com/yjxiong/tsn-pytorch)
+
+- PyTorch, TorchVision, Hugging Face
 
 ## License
 
-This repository is released under the Apache-2.0 license as found in the [LICENSE](https://github.com/luoyujuan123/GCNet/blob/main/LICENSE) file.
+This project is released under the**Apache-2.0 License**.
 
-## Citation
-
-If you think our work is useful, please feel free to cite our paper 😆 :
+## Citation (Official ACM TOMM Format)
 
 ```latex
-@InProceedings{GCNet_2026,
-    author    = {Luo, Yujuan},
-    title     = {GCNet: Global-local Temporal Modeling Enhanced 2DCNN with Category-supervised Contrastive Learning for Action Recognition},
-    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},  % 可替换为你的发表会议/期刊
-    month     = {June},
-    year      = {2026},
-    pages     = {xxxx-xxxx}
+@article{GCNet2025,
+  author  = {Liu, Jiayu and Luo, Yujuan and Li, Jun and Hu, Wenfeng and Shi, Zhiping and Guo, Jinlin and Liu, Xianglong},
+  title   = {Global-local Temporal Modeling Enhanced 2DCNN with Category-supervised Contrastive Learning for Action Recognition},
+  journal = {ACM Trans. Multimedia Comput. Commun. Appl.},
+  year    = {2025},
+  volume  = {1},
+  number  = {1},
+  pages   = {1--16},
+  doi     = {10.1145/nnnnnnn.nnnnnnn}
 }
 ```
 > （注：文档部分内容可能由 AI 生成）

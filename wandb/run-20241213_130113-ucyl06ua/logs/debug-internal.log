@@ -1,0 +1,16 @@
+{"time":"2024-12-13T13:01:13.625452416+08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-13T13:01:13.625497486+08:00","level":"INFO","msg":"created symlink","path":"/media/hd0/liujiayu/code/TDN-main/wandb/run-20241213_130113-ucyl06ua/logs/debug-core.log"}
+{"time":"2024-12-13T13:01:13.736049193+08:00","level":"INFO","msg":"created new stream","id":"ucyl06ua"}
+{"time":"2024-12-13T13:01:13.736115256+08:00","level":"INFO","msg":"stream: started","id":"ucyl06ua"}
+{"time":"2024-12-13T13:01:13.736237271+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"ucyl06ua"}
+{"time":"2024-12-13T13:01:13.736335449+08:00","level":"INFO","msg":"handler: started","stream_id":"ucyl06ua"}
+{"time":"2024-12-13T13:01:13.736465023+08:00","level":"INFO","msg":"sender: started","stream_id":"ucyl06ua"}
+{"time":"2024-12-13T13:01:13.771853598+08:00","level":"ERROR","msg":"sender: upsertRun:","error":"failed to upsert bucket: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): Post \"https://api.wandb.ai/graphql\": tls: failed to verify certificate: x509: certificate is valid for *.cnu.edu.cn, cnu.edu.cn, not api.wandb.ai"}
+{"time":"2024-12-13T13:01:13.783385355+08:00","level":"INFO","msg":"stream: closing","id":"ucyl06ua"}
+{"time":"2024-12-13T13:01:13.784090326+08:00","level":"ERROR","msg":"sender: upsertConfig: RunRecord is nil"}
+{"time":"2024-12-13T13:01:13.84236713+08:00","level":"ERROR","msg":"runfiles: CreateRunFiles returned error: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): Post \"https://api.wandb.ai/graphql\": tls: failed to verify certificate: x509: certificate is valid for *.cnu.edu.cn, cnu.edu.cn, not api.wandb.ai"}
+{"time":"2024-12-13T13:01:13.843185793+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-12-13T13:01:13.843308206+08:00","level":"INFO","msg":"handler: closed","stream_id":"ucyl06ua"}
+{"time":"2024-12-13T13:01:13.843326722+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ucyl06ua"}
+{"time":"2024-12-13T13:01:13.843399073+08:00","level":"INFO","msg":"sender: closed","stream_id":"ucyl06ua"}
+{"time":"2024-12-13T13:01:13.843421301+08:00","level":"INFO","msg":"stream: closed","id":"ucyl06ua"}

@@ -1,0 +1,12 @@
+# 蒸馏配置
+distillation:
+  # 教师模型
+  teachers:
+    clip:
+      model_name: "openai/clip-vit-base-patch32"
+      feature_dim: 512
+      freeze: true
+    
+    vivit:
+      model_name: "vit_base_patch16_224"
+      feature_dim: 768

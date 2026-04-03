@@ -1,0 +1,16 @@
+{"time":"2024-12-13T12:36:14.444134264+08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-13T12:36:14.444161071+08:00","level":"INFO","msg":"created symlink","path":"/media/hd0/liujiayu/code/TDN-main/wandb/run-20241213_123614-p7im8d7r/logs/debug-core.log"}
+{"time":"2024-12-13T12:36:14.553216193+08:00","level":"INFO","msg":"created new stream","id":"p7im8d7r"}
+{"time":"2024-12-13T12:36:14.553286318+08:00","level":"INFO","msg":"stream: started","id":"p7im8d7r"}
+{"time":"2024-12-13T12:36:14.553371275+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"p7im8d7r"}
+{"time":"2024-12-13T12:36:14.553405163+08:00","level":"INFO","msg":"handler: started","stream_id":"p7im8d7r"}
+{"time":"2024-12-13T12:36:14.553527433+08:00","level":"INFO","msg":"sender: started","stream_id":"p7im8d7r"}
+{"time":"2024-12-13T12:36:14.589246628+08:00","level":"ERROR","msg":"sender: upsertRun:","error":"failed to upsert bucket: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): Post \"https://api.wandb.ai/graphql\": tls: failed to verify certificate: x509: certificate is valid for *.cnu.edu.cn, cnu.edu.cn, not api.wandb.ai"}
+{"time":"2024-12-13T12:36:14.600973082+08:00","level":"INFO","msg":"stream: closing","id":"p7im8d7r"}
+{"time":"2024-12-13T12:36:14.601716898+08:00","level":"ERROR","msg":"sender: upsertConfig: RunRecord is nil"}
+{"time":"2024-12-13T12:36:14.660586859+08:00","level":"ERROR","msg":"runfiles: CreateRunFiles returned error: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): Post \"https://api.wandb.ai/graphql\": tls: failed to verify certificate: x509: certificate is valid for *.cnu.edu.cn, cnu.edu.cn, not api.wandb.ai"}
+{"time":"2024-12-13T12:36:14.661381465+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-12-13T12:36:14.661497446+08:00","level":"INFO","msg":"handler: closed","stream_id":"p7im8d7r"}
+{"time":"2024-12-13T12:36:14.661527187+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"p7im8d7r"}
+{"time":"2024-12-13T12:36:14.66153824+08:00","level":"INFO","msg":"sender: closed","stream_id":"p7im8d7r"}
+{"time":"2024-12-13T12:36:14.661596457+08:00","level":"INFO","msg":"stream: closed","id":"p7im8d7r"}

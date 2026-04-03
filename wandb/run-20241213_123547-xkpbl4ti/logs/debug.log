@@ -1,0 +1,25 @@
+2024-12-13 12:35:47,935 INFO    MainThread:1632248 [wandb_setup.py:_flush():68] Current SDK version is 0.19.1
+2024-12-13 12:35:47,935 INFO    MainThread:1632248 [wandb_setup.py:_flush():68] Configure stats pid to 1632248
+2024-12-13 12:35:47,935 INFO    MainThread:1632248 [wandb_setup.py:_flush():68] Loading settings from /home/liujiayu/.config/wandb/settings
+2024-12-13 12:35:47,935 INFO    MainThread:1632248 [wandb_setup.py:_flush():68] Loading settings from /media/hd0/liujiayu/code/TDN-main/wandb/settings
+2024-12-13 12:35:47,935 INFO    MainThread:1632248 [wandb_setup.py:_flush():68] Loading settings from environment variables
+2024-12-13 12:35:47,935 INFO    MainThread:1632248 [wandb_init.py:_log_setup():528] Logging user logs to /media/hd0/liujiayu/code/TDN-main/wandb/run-20241213_123547-xkpbl4ti/logs/debug.log
+2024-12-13 12:35:47,935 INFO    MainThread:1632248 [wandb_init.py:_log_setup():529] Logging internal logs to /media/hd0/liujiayu/code/TDN-main/wandb/run-20241213_123547-xkpbl4ti/logs/debug-internal.log
+2024-12-13 12:35:47,936 INFO    MainThread:1632248 [wandb_init.py:init():644] calling init triggers
+2024-12-13 12:35:47,936 INFO    MainThread:1632248 [wandb_init.py:init():650] wandb.init called with sweep_config: {}
+config: {}
+2024-12-13 12:35:47,936 INFO    MainThread:1632248 [wandb_init.py:init():680] starting backend
+2024-12-13 12:35:47,936 INFO    MainThread:1632248 [wandb_init.py:init():684] sending inform_init request
+2024-12-13 12:35:48,065 INFO    MainThread:1632248 [backend.py:_multiprocessing_setup():104] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-12-13 12:35:48,066 INFO    MainThread:1632248 [wandb_init.py:init():697] backend started and connected
+2024-12-13 12:35:48,069 INFO    MainThread:1632248 [wandb_init.py:init():790] updated telemetry
+2024-12-13 12:35:48,075 INFO    MainThread:1632248 [wandb_init.py:init():822] communicating run to backend with 90.0 second timeout
+2024-12-13 12:35:48,233 ERROR   MainThread:1632248 [wandb_init.py:init():849] encountered error: failed to upsert bucket: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): Post "https://api.wandb.ai/graphql": tls: failed to verify certificate: x509: certificate is valid for *.cnu.edu.cn, cnu.edu.cn, not api.wandb.ai
+2024-12-13 12:35:48,233 ERROR   MainThread:1632248 [wandb_init.py:init():1308] error in wandb.init()
+Traceback (most recent call last):
+  File "/media/hd0/liujiayu/miniconda3/envs/py310/lib/python3.8/site-packages/wandb/sdk/wandb_init.py", line 1298, in init
+    return wi.init()
+  File "/media/hd0/liujiayu/miniconda3/envs/py310/lib/python3.8/site-packages/wandb/sdk/wandb_init.py", line 855, in init
+    raise error
+wandb.errors.errors.CommError: failed to upsert bucket: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): Post "https://api.wandb.ai/graphql": tls: failed to verify certificate: x509: certificate is valid for *.cnu.edu.cn, cnu.edu.cn, not api.wandb.ai
+2024-12-13 12:35:48,245 WARNING MsgRouterThr:1632248 [router.py:message_loop():75] message_loop has been closed

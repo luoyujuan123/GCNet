@@ -1,0 +1,6 @@
+/media/hd0/datasets/hmdb51/videos/pushup/Laura_-_PushUps_pushup_f_cm_np1_le_med_0.avi 6
+/media/hd0/datasets/hmdb51/videos/pushup/Laura_-_PushUps_pushup_f_cm_np1_le_med_1.avi 6
+/media/hd0/datasets/hmdb51/videos/pushup/Laura_-_PushUps_pushup_f_cm_np1_le_med_2.avi 6
+/media/hd0/datasets/hmdb51/videos/pushup/Lori_Does_Desktop_Pushups_pushup_f_nm_np1_le_goo_0.avi 6
+/media/hd0/datasets/hmdb51/videos/pushup/Lori_Does_Desktop_Pushups_pushup_f_nm_np1_le_goo_1.avi 6
+/media/hd0/datasets/hmdb51/videos/pushup/Lori_Does_Desktop_Pushups_pushup_f_nm_np1_le_goo_2.avi 6

@@ -47,7 +47,7 @@ CCL enhances discriminability by optimizing two losses jointly:
 
 ### 3. Efficient 2DCNN Enhancement
 
-- Backbone: ResNet-50 / ResNet-101 (ImageNet pre-trained)
+- Backbone: ResNet-50 (ImageNet pre-trained)
 
 - Frame sampling: 8 / 16 frames (sparse sampling)
 
@@ -55,7 +55,7 @@ CCL enhances discriminability by optimizing two losses jointly:
 
 ## Prerequisites
 
-The environment is fully compatible with TDN and standard video understanding pipelines:
+The environment is fully compatible with TDN and standard video understanding pipelines:c
 
 - Python ≥ 3.6
 
@@ -90,7 +90,6 @@ Large weight files are excluded from GitHub due to size limits. Please download 
 ```bash
 GCNet/
 ├─ resnet50-19c8e357.pth          (torchvision official)
-├─ resnet101-5d3b4d8f.pth         (torchvision official)
 └─ kd_pretrained_models/
     ├─ clip-vit-base-patch32/
     │   └─ pytorch_model.bin
@@ -197,13 +196,13 @@ python pkl_to_results.py --num_clips 10 --test_crops 3
 
 ## Training (Aligned with Paper Settings)
 
-### Train on UCF-101 (8 GPUs)
+### Train on UCF-101 (2 GPUs)
 
 ```bash
 python -m torch.distributed.launch --nproc_per_node=8 \
 main.py ucf101 RGB \
 --arch resnet50 --num_segments 8 \
---lr 0.015 --lr_steps 30 45 55 --epochs 60 \
+--lr 0.0015 --lr_steps 30 45 55 --epochs 60 \
 --batch-size 8 --wd 5e-4 \
 --contrastive_loss True \
 --contrastive_temperature 0.1 \
@@ -226,7 +225,7 @@ main.py hmdb51 RGB \
 python -m torch.distributed.launch --nproc_per_node=8 \
 main.py something RGB \
 --arch resnet50 --num_segments 8 \
---lr 0.003 --epochs 60 \
+--lr 0.28 --epochs 60 \
 --contrastive_loss True --category_supervised True
 ```
 

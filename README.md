@@ -194,18 +194,19 @@ Aggregate results:
 python pkl_to_results.py --num_clips 10 --test_crops 3
 ```
 
-## Training (Aligned with Paper Settings)
+## Training (Aligned with Paper Settings) (2 GPUs)
 
-### Train on UCF-101 (2 GPUs)
+### Train on UCF-101 
 
 ```bash
 python -m torch.distributed.launch --nproc_per_node=8 \
 main.py ucf101 RGB \
 --arch resnet50 --num_segments 8 \
---lr 0.0015 --lr_steps 30 45 55 --epochs 60 \
---batch-size 8 --wd 5e-4 \
+--lr 0.0015 --lr_steps 25 35 --epochs 50 \
+--batch-size 4 --wd 5e-4 \
+--dropout 0.8 \
+--no_partialbn \
 --contrastive_loss True \
---contrastive_temperature 0.1 \
 --category_supervised True
 ```
 
@@ -215,8 +216,12 @@ main.py ucf101 RGB \
 python -m torch.distributed.launch --nproc_per_node=8 \
 main.py hmdb51 RGB \
 --arch resnet50 --num_segments 8 \
---lr 0.0015 --epochs 60 \
---contrastive_loss True --category_supervised True
+--lr 0.0015 --lr_steps 25 35 --epochs 50 \
+--batch-size 4 --wd 5e-4 \
+--dropout 0.8 \
+--no_partialbn \
+--contrastive_loss True \
+--category_supervised True
 ```
 
 ### Train on Something-Something-V1
@@ -225,8 +230,12 @@ main.py hmdb51 RGB \
 python -m torch.distributed.launch --nproc_per_node=8 \
 main.py something RGB \
 --arch resnet50 --num_segments 8 \
---lr 0.28 --epochs 60 \
---contrastive_loss True --category_supervised True
+--lr 0.0025 --lr_steps 30 45 55 --epochs 60 \
+--batch-size 8 --wd 5e-4 \
+--dropout 0.8 \
+--no_partialbn \
+--contrastive_loss True \
+--category_supervised True
 ```
 
 ## Key Parameters for GCNet (From Paper)

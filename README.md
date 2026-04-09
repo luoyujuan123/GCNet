@@ -212,6 +212,7 @@ main.py something RGB \
 ## Acknowledgements
 
 Our code is built on:
+```
 
 @InProceedings{Wang_2021_CVPR,
     author    = {Wang, Limin and Tong, Zhan and Ji, Bin and Wu, Gangshan},
@@ -232,3 +233,4 @@ Our code is built on:
   year={2018},
   publisher={IEEE}
 }
+```

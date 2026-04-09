@@ -213,7 +213,22 @@ main.py something RGB \
 
 Our code is built on:
 
-- [Wang et al., TDN: Temporal Difference Networks (CVPR 2021)](sslocal://flow/file_open?url=https%3A%2F%2Fgithub.com%2FMCG-NJU%2FTDN&flow_extra=eyJsaW5rX3R5cGUiOiJjb2RlX2ludGVycHJldGVyIn0=)
-- [Wang et al., TSN: Temporal Segment Networks (ECCV 2016)](sslocal://flow/file_open?url=https%3A%2F%2Fgithub.com%2Fyjxiong%2Ftsn-pytorch&flow_extra=eyJsaW5rX3R5cGUiOiJjb2RlX2ludGVycHJldGVyIn0=)
+@InProceedings{Wang_2021_CVPR,
+    author    = {Wang, Limin and Tong, Zhan and Ji, Bin and Wu, Gangshan},
+    title     = {TDN: Temporal Difference Networks for Efficient Action Recognition},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2021},
+    pages     = {1895-1904}
+}
 
-- PyTorch, TorchVision, Hugging Face
+@article{wang2018temporal,
+  title={Temporal segment networks for action recognition in videos},
+  author={Wang, Limin and Xiong, Yuanjun and Wang, Zhe and Qiao, Yu and Lin, Dahua and Tang, Xiaoou and Van Gool, Luc},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={41},
+  number={11},
+  pages={2740--2755},
+  year={2018},
+  publisher={IEEE}
+}

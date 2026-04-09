@@ -3,55 +3,10 @@
 ![GCNet Architecture](https://raw.githubusercontent.com/luoyujuan123/GCNet/main/picture/GCNet_arch.jpg)
 
 
-## News
-
-**[Apr 3, 2026]** We release the PyTorch code of **GCNet** (ACM TOMM 2025), built on the TDN codebase, with Global-local Temporal Modeling and Category-supervised Contrastive Learning.
 
 ## Overview
 
-This repository hosts the PyTorch implementation for **GCNet** (**G**lobal-local **T**emporal Modeling Enhanced 2DCNN with **C**ategory-supervised **C**ontrastive Learning), published in **ACM Transactions on Multimedia Computing, Communications, and Applications (ACM TOMM) 2025**.
-
-GCNet is a lightweight yet high-performance video action recognition framework, designed to solve two core limitations of traditional 2DCNN-based methods:
-
-1. Insufficient capability for **long-range temporal modeling**
-
-2. Unclear semantic boundaries for **confusable action categories**
-
-The framework is built on efficient 2DCNNs and introduces two novel core modules:
-
-- **Global-local Temporal Modeling (GTM)**: Unifies global temporal correlation (via Mamba/SSM) and local temporal details (multi-receptive-field convolution + key feature attention).
-
-- **Category-supervised Contrastive Learning (CCL)**: Uses category labels to guide contrastive learning, pulling similar actions closer and pushing dissimilar ones apart.
-
-**TL; DR.** GCNet enhances 2DCNNs with stronger temporal modeling and discriminative feature learning, achieving SOTA accuracy without expensive 3D convolutions.
-
-## Core Innovations (Aligned with Paper)
-
-### 1. Global-local Temporal Modeling (GTM)
-
-GTM explicitly disentangles global and local temporal cues:
-
-- **Temporal Global Relevance Extractor (TGR)**: Uses Mamba-based State Space Model (SSM) to capture long-range temporal dependencies.
-
-- **Temporal Detail Feature Extractor (TDF)**: Dual-branch multi-kernel convolution to capture fine-grained local motion changes.
-
-- **Temporal Local Key Feature Extractor (TLKF)**: Lightweight channel attention to highlight critical local motion features.
-
-### 2. Category-supervised Contrastive Learning (CCL)
-
-CCL enhances discriminability by optimizing two losses jointly:
-
-- **Intra-class loss**: Minimizes distance between samples of the same category.
-
-- **Inter-class loss**: Maximizes distance between samples of different categories.
-
-### 3. Efficient 2DCNN Enhancement
-
-- Backbone: ResNet-50 (ImageNet pre-trained)
-
-- Frame sampling: 8 / 16 frames (sparse sampling)
-
-- Joint optimization: Classification loss + Contrastive loss
+This PyTorch-implemented GCNet, a lightweight video action recognition framework, enhances 2DCNNs with two novel modules—Global-local Temporal Modeling (GTM) for unified global-local temporal feature extraction and Category-supervised Contrastive Learning (CCL) for discriminative feature learning—to achieve state-of-the-art accuracy without expensive 3D convolutions.
 
 ## Prerequisites
 

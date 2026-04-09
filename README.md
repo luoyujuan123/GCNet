@@ -91,9 +91,8 @@ Data preparation follows the **TDN protocol**:
 |---|---|---|
 |GCNet-ResNet50|8|**52.7%**|
 |GCNet-ResNet50|16|**54.2%**|
-*All results strictly match the ACM TOMM paper ablation & comparison tables.*
 
-## Comparison with TDN (CVPR 2021)
+## Comparison with TDN
 
 GCNet is developed based on the TDN codebase but with significantly improved performance via **Global-local Temporal Modeling (GTM)** and **Category-supervised Contrastive Learning (CCL)**. Under the same backbone (ResNet-50), pretrain (ImageNet), and training settings, we compare GCNet with TDN as below:
 
@@ -122,8 +121,6 @@ GCNet is developed based on the TDN codebase but with significantly improved per
 |TDN|16|53.9%|—|
 |**GCNet (Ours)**|**16**|**54.2%**|**+0.3%**|
 ### Key Advantage
-
-GCNet consistently outperforms TDN by **+1.2% ∼ +4.3%** across datasets, especially on fine-grained and confused categories, thanks to stronger temporal modeling and more discriminative feature learning.
 
 ## Testing
 
@@ -211,17 +208,13 @@ main.py something RGB \
 |✓|✗|59.3%|88.0%|
 |✗|✓|58.0%|87.6%|
 |✓|✓|**59.9%**|**88.6%**|
-## Contact
-
-junmuzi@gmail.com
 
 ## Acknowledgements
 
 Our code is built on:
 
-- [TDN: Temporal Difference Networks (CVPR 2021)](https://github.com/MCG-NJU/TDN)
-
-- [TSN: Temporal Segment Networks (ECCV 2016)](https://github.com/yjxiong/tsn-pytorch)
+- [Wang et al., TDN: Temporal Difference Networks (CVPR 2021)](sslocal://flow/file_open?url=https%3A%2F%2Fgithub.com%2FMCG-NJU%2FTDN&flow_extra=eyJsaW5rX3R5cGUiOiJjb2RlX2ludGVycHJldGVyIn0=)
+- [Wang et al., TSN: Temporal Segment Networks (ECCV 2016)](sslocal://flow/file_open?url=https%3A%2F%2Fgithub.com%2Fyjxiong%2Ftsn-pytorch&flow_extra=eyJsaW5rX3R5cGUiOiJjb2RlX2ludGVycHJldGVyIn0=)
 
 - PyTorch, TorchVision, Hugging Face
 

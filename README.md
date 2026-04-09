@@ -53,7 +53,7 @@ GCNet/
        └─ model.safetensors
 ```
 
-## Datasets (Fully Aligned with Paper)
+## Datasets
 
 GCNet is evaluated on **three standard benchmarks**:
 
@@ -71,7 +71,7 @@ Data preparation follows the **TDN protocol**:
 
 - Update dataset paths in `ops/dataset_configs.py`
 
-## Model Zoo & Benchmark Results (Paper Numbers)
+## Model Zoo & Benchmark Results
 
 ### UCF-101
 
@@ -146,7 +146,7 @@ Aggregate results:
 python pkl_to_results.py --num_clips 10 --test_crops 3
 ```
 
-## Training (Aligned with Paper Settings) (2 GPUs)
+## Training (2 GPUs)
 
 ### Train on UCF-101 
 
@@ -190,7 +190,7 @@ main.py something RGB \
 --category_supervised True
 ```
 
-## Key Parameters for GCNet (From Paper)
+## Key Parameters for GCNet
 
 - `--contrastive_loss True`: Enable CCL module
 
@@ -200,7 +200,7 @@ main.py something RGB \
 
 - `--num_segments 8`: Sparse 8-frame sampling (best speed–accuracy tradeoff)
 
-## Ablation Study (Paper Verified)
+## Ablation Study
 
 |GTM|CCL|HMDB-51|UCF-101|
 |---|---|---|---|

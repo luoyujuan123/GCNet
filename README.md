@@ -120,7 +120,7 @@ GCNet is developed based on the TDN codebase but with significantly improved per
 |**GCNet (Ours)**|**8**|**52.7%**|**+0.4%**|
 |TDN|16|53.9%|—|
 |**GCNet (Ours)**|**16**|**54.2%**|**+0.3%**|
-### Key Advantage
+
 
 ## Testing
 
@@ -217,4 +217,3 @@ Our code is built on:
 - [Wang et al., TSN: Temporal Segment Networks (ECCV 2016)](sslocal://flow/file_open?url=https%3A%2F%2Fgithub.com%2Fyjxiong%2Ftsn-pytorch&flow_extra=eyJsaW5rX3R5cGUiOiJjb2RlX2ludGVycHJldGVyIn0=)
 
 - PyTorch, TorchVision, Hugging Face
-

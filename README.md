@@ -214,13 +214,12 @@ main.py something RGB \
 Our code is built on:
 ```
 
-@InProceedings{Wang_2021_CVPR,
-    author    = {Wang, Limin and Tong, Zhan and Ji, Bin and Wu, Gangshan},
-    title     = {TDN: Temporal Difference Networks for Efficient Action Recognition},
-    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-    month     = {June},
-    year      = {2021},
-    pages     = {1895-1904}
+@inproceedings{wang2021tdn,
+  title={Tdn: Temporal difference networks for efficient action recognition},
+  author={Wang, Limin and Tong, Zhan and Ji, Bin and Wu, Gangshan},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={1895--1904},
+  year={2021}
 }
 
 @article{wang2018temporal,

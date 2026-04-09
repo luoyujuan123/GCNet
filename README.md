@@ -213,7 +213,6 @@ main.py something RGB \
 
 Our code is built on:
 ```
-
 @inproceedings{wang2021tdn,
   title={Tdn: Temporal difference networks for efficient action recognition},
   author={Wang, Limin and Tong, Zhan and Ji, Bin and Wu, Gangshan},
@@ -221,7 +220,6 @@ Our code is built on:
   pages={1895--1904},
   year={2021}
 }
-
 @article{wang2018temporal,
   title={Temporal segment networks for action recognition in videos},
   author={Wang, Limin and Xiong, Yuanjun and Wang, Zhe and Qiao, Yu and Lin, Dahua and Tang, Xiaoou and Van Gool, Luc},
